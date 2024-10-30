@@ -22,7 +22,7 @@ def print_event_list(event_json):
         print("Event Severity: {}".format(event["severity"]))
         print("Event Description: {}".format(event["description"]))
         print("Event Category: {}".format(event["category"]))
-        # print("Event Importance: {}".format(event["importance"]))
+        print("Event Tags: {}".format(event["tags"]))
         print("\n")
 
 
