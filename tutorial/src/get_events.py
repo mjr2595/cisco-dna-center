@@ -16,13 +16,20 @@ def get_event_list():
 
 
 def print_event_list(event_json):
+    print("\n=== Events ===\n")
     for event in event_json:
-        print("Event ID: {}".format(event["eventId"]))
-        print("Event Name: {}".format(event["name"]))
-        print("Event Severity: {}".format(event["severity"]))
-        print("Event Description: {}".format(event["description"]))
-        print("Event Category: {}".format(event["category"]))
-        print("Event Tags: {}".format(event["tags"]))
+        print("ID: {}".format(event["eventId"]))
+        print("Namespace: {}".format(event["namespace"]))
+        print("Name: {}".format(event["name"]))
+        print("Description: {}".format(event["description"]))
+        print("Version: {}".format(event["version"]))
+        print("Category: {}".format(event["category"]))
+        print("Domain: {}".format(event["domain"]))
+        print("Sub-Domain: {}".format(event["subDomain"]))
+        print("Type: {}".format(event["type"]))
+        print("Tags: {}".format(event["tags"]))
+        print("Severity: {}".format(event["severity"]))
+        print("Subscription Types: {}".format(event["subscriptionTypes"]))
         print("\n")
 
 
