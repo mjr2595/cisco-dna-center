@@ -8,17 +8,23 @@ def get_event_list():
     Building out function to retrieve list of events. Using requests.get to make a call to the events Endpoint
     """
     token = get_auth_token()  # Get Token
-    url = "https://sandboxdnac.cisco.com/dna/intent/api/v1/events?tags=ASSURANCE"
+    url = "https://sandboxdnac.cisco.com/dna/data/api/v1/assuranceEvents/query"
     hdr = {"x-auth-token": token, "content-type": "application/json"}
-    resp = requests.get(url, headers=hdr, verify=False)  # Make the Get Request
+    params = {"deviceFamily": "Switches and Hubs&deviceFamily=Routers"}
+    body = {}
+    resp = requests.post(
+        url, headers=hdr, params=params, data=body, verify=False
+    )  # Make the Post Request
     event_list = resp.json()
-    print_event_list(event_list)
+    print(event_list)
+    # print_event_list(event_list)
 
 
 def print_event_list(event_json):
-    print("\n=== Events ===\n")
+    print("\n=== Event Series ===\n")
     for event in event_json:
         print("ID: {}".format(event["eventId"]))
+        print("InstanceID: {}".format(event["instanceId"]))
         print("Namespace: {}".format(event["namespace"]))
         print("Name: {}".format(event["name"]))
         print("Description: {}".format(event["description"]))
@@ -26,11 +32,14 @@ def print_event_list(event_json):
         print("Category: {}".format(event["category"]))
         print("Domain: {}".format(event["domain"]))
         print("Sub-Domain: {}".format(event["subDomain"]))
-        print("Type: {}".format(event["type"]))
-        print("Tags: {}".format(event["tags"]))
-        print("Severity: {}".format(event["severity"]))
-        print("Subscription Types: {}".format(event["subscriptionTypes"]))
+        print("Source: {}".format(event["source"]))
+        print("Timestamp: {}".format(event["timestamp"]))
+        print("Start Time: {}".format(event["startTime"]))
         print("Details: {}".format(event["details"]))
+        print("Event Hierarchy: {}".format(event["eventHierarchy"]))
+        print("Type: {}".format(event["type"]))
+        print("Severity: {}".format(event["severity"]))
+        print("Network Info: {}".format(event["network"]))
         print("\n")
 
 
